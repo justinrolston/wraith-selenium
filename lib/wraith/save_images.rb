@@ -39,7 +39,9 @@ class Wraith::SaveImages
   end
 
   def base_urls(path)
-    wraith.base_domain(base_type) + path unless wraith.base_domain(base_type).nil?
+    unless wraith.base_domain(base_type).nil?
+      wraith.base_domain(base_type) + path
+    end
   end
 
   def compare_urls(path)

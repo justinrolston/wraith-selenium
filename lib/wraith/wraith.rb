@@ -12,12 +12,12 @@ class Wraith::Wraith
   end
 
   def base_domain_label
-    domains.keys[0]
+    domains[base_type].keys[0]
   end
 
   def base_domain(base_type)
-    if base_type =='url'
-      domains[base_domain_label]
+    if base_type.eql?('url')
+      domains[base_type][base_domain_label]
     else
       comp_domain
     end
@@ -75,15 +75,22 @@ class Wraith::Wraith
     end
   end
 
-  def check_domains(base_type,hash)
-    urls = hash[base_type]
-
-    urls.each_key do |label|
-      if urls[label].empty?
-        return false
+  def check_domains(base_type,domains)
+    if base_type.eql?('url')
+      domains[base_type].each_key do |label|
+        if domains[base_type][label].empty?
+          return false
+        end
       end
+    elsif base_type.eql?('browser')
+      if domains[base_type]['compare'].empty?
+        return false
+      else
+        return true
+      end
+    else
+      return false
     end
-
     true
   end
 
@@ -106,11 +113,11 @@ class Wraith::Wraith
   end
 
   def comp_domain
-    domains[comp_domain_label]
+    domains[base_type][comp_domain_label]
   end
 
   def comp_domain_label
-    domains.keys[1]
+    domains[base_type].keys[1]
   end
 
   def self.crop_images(file, height, output)
@@ -169,7 +176,7 @@ class Wraith::Wraith
   end
 
   def domains
-    @config['domains'][base_type]
+    @config['domains']
   end
 
   def engine

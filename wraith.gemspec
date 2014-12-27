@@ -4,13 +4,17 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'wraith/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "wraith"
+  spec.name          = "selenium-wraith"
   spec.version       = Wraith::VERSION
-  spec.authors       = ["Dave Blooman", "Simon Thulbourn"]
-  spec.email         = ["david.blooman@gmail.com", "simon+github@thulbourn.com"]
-  spec.summary       = 'Wraith is a screenshot comparison tool, created by developers at BBC News.'
-  spec.description   = 'Wraith is a screenshot comparison tool, created by developers at BBC News.'
-  spec.homepage      = "http://responsivenews.co.uk"
+  spec.authors       = ["Andrew Tekle-Cadman"]
+  spec.email         = ["futurevisibleltd@gmail.com"]
+  spec.summary       = 'Selenium-Wraith is an extension of the Wraith screenshot comparison tool, originally created by developers at BBC News.'
+  spec.description   = 'Selenium-Wraith is an extension of the Wraith screenshot comparison tool, originally created by developers at BBC News.
+                        It has been extended by Andrew Tekle-Cadman of Future Visible Ltd. to cover in browser testing, browser based comparison
+                        and page sub-component comparison. See README file for full details.
+                        Please see http://github.com/bbc-news/wraith for information on the
+                        original BBC Wraith gem'
+  spec.homepage      = "http://www.futurevisible.com"
   spec.license       = "Apache 2"
 
   spec.files         = `git ls-files`.split($/)
@@ -29,6 +33,5 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "nokogiri"
   spec.add_runtime_dependency "log4r"
   spec.add_runtime_dependency "selenium-webdriver"
-  #spec.add_runtime_dependency "selenium-grid"
   spec.add_runtime_dependency "thor"
 end

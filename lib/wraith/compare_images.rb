@@ -31,8 +31,8 @@ class Wraith::CompareImages
           actual_compare_props = @wraith.determine_file_version(compare_props,base_props[:height])
           if actual_base_props[:width] != actual_compare_props[:width] || actual_base_props[:height] != actual_compare_props[:height]
             #copy over invalid files for display in gallery
-            FileUtils.cp('assets/invalid.jpg',diff_file)
-            FileUtils.cp('assets/invalid.txt',info_file)
+            FileUtils.cp(File.dirname(__FILE__) + '/../../assets/invalid.jpg',diff_file)
+            FileUtils.cp(File.dirname(__FILE__) + '/../../assets/invalid.txt',info_file)
             next
           end
 

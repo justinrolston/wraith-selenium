@@ -67,16 +67,12 @@ describe Wraith, '#domains' do
   it 'should return the domains specified when using the webkit config file' do
     expect(wraith_webkit_url.domains).to eq expected_hash
   end
-
-  it 'should return the domains specified when using the selenium config file' do
-    expect(wraith_selenium_url.domains).to eq expected_hash
-  end
 end
 
 describe Wraith, '#base_domain' do
 
-  expected_base = test_expectations['domains']['base']
-  expected_compare = test_expectations['domains']['compare']
+  expected_base = test_expectations['domains']['url']['base']
+  expected_compare = test_expectations['domains']['url']['compare']
 
   it 'should return the base domain specified when using the webkit config file and url comparison' do
     expect(wraith_webkit_url.base_domain('url')).to eq expected_base
@@ -93,7 +89,7 @@ end
 
 describe Wraith, '#comp_domain' do
 
-  expected_comparison_domain = test_expectations['domains']['compare']
+  expected_comparison_domain = test_expectations['domains']['url']['compare']
   it 'should return the comp domain specified when using the selenium config file' do
     expect(wraith_webkit_url.comp_domain).to eq expected_comparison_domain
   end

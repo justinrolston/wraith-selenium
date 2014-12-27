@@ -1,3 +1,3 @@
 module Wraith
-  VERSION = '1.1.6'
+  VERSION = '0.1'
 end

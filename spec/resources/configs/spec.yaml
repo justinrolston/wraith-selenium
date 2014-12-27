@@ -100,8 +100,12 @@ test_expectations:
     url: 'url'
     browser: 'browser'
   domains:
-    base: 'http://www.live.bbc.co.uk/news'
-    compare: 'http://www.live.bbc.co.uk/russian'
+    url:
+      base: 'http://www.live.bbc.co.uk/news'
+      compare: 'http://www.live.bbc.co.uk/russian'
+    browser:
+      base:
+      compare:
   domain_labels:
     base: 'base'
     compare: 'compare'

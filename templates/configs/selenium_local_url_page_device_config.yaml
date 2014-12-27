@@ -1,0 +1,190 @@
+#######################################################################
+#
+# Test config file for running Wraith-Selenium using selenium locally
+# and url-based comparison and a locally attached device.
+# The configuration below was used for running selenium webdriver on a
+# iPad 2 device attached to a MacPro computer. However wraith-selenium
+# has been shown to work for locally-attached Android devices as well.
+#
+# This file can be used as a template for production configuration.
+#
+######################################################################
+
+#change this line based on which suite of browsers you want to run
+#better to pass as a command line argument when have time to refactor
+suite: "standard"
+
+#define different suites of browsers here
+suites:
+  webkit: ["phantomjs"]
+  standard: ["safari"]
+  # gecko: "slimerjs"
+
+#define different engines/drivers to run your browser suites here - e.g. selenium
+engine:
+  webkit: ""
+  standard: "selenium"
+
+#engine_mode - set to 'grid' if using a selenium grid, defaults to 'local'
+engine_mode:
+
+#If you want to have multiple snapping files, set the file name here
+snap_file:
+  webkit: "javascript/snap.js"
+  standard: ""
+
+# Type the name of the directory that shots will be stored in
+directory:
+  - 'shots'
+
+#thumbnail images subdirectory name
+thumbnail_directory: thumbnails
+
+#cropped images subdirectory name
+crops_directory: crops
+
+# if you are using url comparison, set the url: base: and url: compare: values
+# if using browser comparison, set the url: compare: value
+# when using browser-based comparison, always leave the base value blank, as we only use the comparison value
+domains:
+  url:
+    base: "http://www.live.bbc.co.uk/news"
+    compare: "http://www.live.bbc.co.uk/russian"
+  browser:
+    compare:
+
+base_browser:
+
+#Type screen widths below, here are a couple of examples
+screen_properties:
+  desktop:
+    - 320
+    - 600
+    - 768
+    - 1024
+    - 1280
+  device:
+    - 1024
+
+#Type page URL paths below, here are a couple of examples
+paths:
+  home: /
+
+# If you don't want to name the paths explicitly you can use a yaml
+# collection as follows, and names will be derived by replacing / with _
+#
+# paths:
+#  - /imghp
+#  - /maps
+
+#Amount of fuzz ImageMagick will use
+fuzz: '20%'
+
+#Set the number of days to keep the site spider file
+spider_days:
+  - 10
+
+
+###################################################################
+#
+# SELENIUM ONLY OPTIONS BELOW HERE
+#
+###################################################################
+
+#The attributes defined as default_parameters in the section beneath this one
+#could also be defined here.
+#This would be necessary if you wanted to run a mixture of desktop
+#and device browsers or maybe multiple locally attached devices.
+#For example:
+#  safari:
+#    desktop:
+#    device:
+#      :url: http://192.168.1.69:3001/wd/hub/
+#      :actual_device: ipad
+#  chrome:
+#    desktop:
+#  firefox:
+#    desktop:
+browser_devices:
+  safari:
+    device:
+
+#you can define some default parameters to pass to the selenium driver here.
+#You can also leave blank as all optional, but don't delete the key structure
+#Note the necessity when running Wraith-Selenium against a locally attached device
+#of defining both a url for the selenium webdriver running  on the locally
+#attached device and the actual device name.
+default_parameters:
+  :url: http://192.168.1.69:3001/wd/hub/
+  :actual_device: ipad
+  :capabilities:
+    :version:
+    :platform: MAC
+
+#if you have just set screen widths in screen_dimensions, you can set a generic height for the screen here
+default_screen_height: 1000
+
+#page load timeout
+timeout: 60
+
+#base type - either 'browser' or 'url'.
+#browser base type will compare a given url using a browser as a base
+#domain base type will use a url as the basis for comparison against a second url
+base_type: url
+
+#set this flag to true if using browser based comparison and you wish to compare
+#the base browser to itself. This can be useful to check for page differences caused
+#by loading or other instabilities
+compare_base_to_base: false
+
+#set this if you are using browser type based comparison
+base_browser:
+
+#set this to get selenium to wait until a certain page element is displayed
+default_wait_until_element:
+
+#very annoyingly and weirdly, selenium often interprets screenshot sizes differently from those
+#stipulated in your window dimensions. Offset behaviour seems inconsistent between browsers,
+#browser versions and between different widths.
+#Your first run using selenium using browser-based comparison may well result in some
+#invalid diff comparisons due to screen shot width variation.
+#To rectify this, inspect the screenshot widths produced against your configured widths,
+#You can then add a bias value for each browser screen width as shown below.
+#
+#Note that when using URL-base comparison this issue shouldn't result in any diff image failures
+#but nonetheless your captured screenshot widths may be different from those you stipulated.
+screenshot_bias:
+  width:
+    chrome:
+      desktop:
+        320: 0
+        600: 0
+        768: 0
+        1024: 0
+        1280: 0
+      device:
+        1024: 0
+    firefox:
+      desktop:
+        320: 15
+        600: 15
+        768: 15
+        1024: 15
+        1280: 15
+      device:
+        1024: 15
+    safari:
+      desktop:
+        320: 15
+        600: 15
+        768: 15
+        1024: 15
+        1280: 15
+      device:
+        1024: 15
+
+###################################################################
+#
+# SELENIUM GRID ONLY OPTIONS BELOW HERE
+#
+###################################################################

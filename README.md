@@ -1,4 +1,5 @@
-# Wraith-Selenium
+SELENIUM-WRAITH
+===============
 
 [![Build Status](https://secure.travis-ci.org/BBC-News/wraith.png?branch=master)](http://travis-ci.org/BBC-News/wraith)
 [![Code Climate](https://codeclimate.com/github/BBC-News/wraith.png)](https://codeclimate.com/github/BBC-News/wraith)
@@ -6,30 +7,30 @@
  * Website: http://responsivenews.co.uk
  * Source: http://github.com/bbc-news/wraith
 
-Wraith-Selenium is an augmentation of the BBC Wraith gem by the Friday design agency.
+Selenium-Wraith is an augmentation of the BBC Wraith gem by Andrew Tekle-Cadman of Future Visible Ltd.
 
-The original Wraith is a screenshot comparison tool, created by developers at BBC News.
+The original Wraith is a screenshot comparison tool, created by developers at BBC News, for headless
+browser url-based comparison of responsive web sites.
 
+Wraith uses either [PhantomJS](http://phantomjs.org) or [SlimerJS](http://slimerjs.org) to
+create screen-shots of different environments and then creates a diff of the two images,
+the affected areas are highlighted in blue.
 
-## What is it?
+Selenium-Wraith draws heavily on the Wraith gem,
+forking the Wraith repo at the GitHub commit 88c5db7.... on 16/4/2014. It retains
+all the Wraith functionality up to that point but also greatly increases it's capabilities.
 
-The original Wraith uses either [PhantomJS](http://phantomjs.org) or
-[SlimerJS](http://slimerjs.org) to create screen-shots of different environments
-and then creates a diff of the two images, the affected areas are highlighted in
-blue.
+NEW CAPABILITIES
+================
 
-
-![Photo of BBC News with a
-diff](http://bbc-news.github.io/wraith/img/320_diff.png)
-
-Wraith-Selenium adds the following capabilities to Wraith
+Selenium-Wraith adds the following capabilities to Wraith
 
 1. Selenium integration, both running locally on a desktop or on a selenium grid
 2. Browser to browser screenshot comparison
 3. Page component-based comparison
 
-GENERAL APPROACH
-================
+CODE CHANGES AND TESTS
+======================
 
 In general code has been added or changed within the original Wraith classes.
 A new driver code module has also been added. 
@@ -41,35 +42,44 @@ The original Wraith tests have been deleted.
 
 Each cucumber scenario covers a major area of functionality, although necessarily these
 overlap considerably. Each use their own test configuration file located in
-<ROOT>/spec/resources/configs. The test configuration
-files are extensively documented and can be used as templates for production.
- 
-These are: 
-
-test_phantomjs_local_url_page_desktop_config.yaml - used for running the pre-existing Wraith 
-functionality using phantomJS.
-
-test_selenium_grid_browser_page_desktop_config.yaml - used for running
-using a selenium grid and browser-based comparison.
-
-test_selenium_local_browser_component_desktop_config.yaml - used for running
-selenium locally using locally installed desktop browsers (chrome,safari) with
-browser-based comparison and testing page components rather than whole pages.
-
-test_selenium_local_url_page_desktop_config.yaml - used for running
-selenium locally using locally installed desktop browsers with
-url-based comparison.
-
-test_selenium_local_url_page_device_config.yaml - used for running selenium 
-locally and testing locally attached devices (in this case an iPad 2 attached
-to a Mac Pro machine) with url-based comparison.
-
+<ROOT>/spec/resources/configs, which are copies of the config files in the templates folder.
 The central idea behind the creation of these scenarios is both to maintain the Wraith-Selenium 
-code but also to properly document the greatly expanded number of configuration options properly.
+code but also to help properly document the greatly expanded number of configuration options.
 
 Most but not all of the cucumber scenarios can run simultaneously. However some, such as the
 scenario for running a selenium grid, necessarily rely on a different initial set up and 
-must be run in isolation.
+must be run in isolation.  This should be born in mind by commenting out the incompatible
+examples when running the scenarios.
+
+CONFIG FILES
+============
+
+In order to best document the powerful configuration options in Selenium-Wraith, a number of sample configuration files
+are present in the templates directory. Each file contains extensive comments.
+
+These are:
+
+#phantomjs_local_url_page_desktop_config.yaml
+Ued for running the pre-existing Wraith
+functionality using phantomJS.
+
+#selenium_grid_browser_page_desktop_config.yaml
+Used for running browser-based comparison on a
+selenium grid.
+
+#selenium_local_browser_component_desktop_config.yaml
+Used for running selenium locally using locally installed
+desktop browsers (chrome,safari) with browser-based comparison
+and testing page components rather than whole pages.
+
+#selenium_local_url_page_desktop_config.yaml
+Used for running selenium locally using locally installed desktop
+browsers with url-based comparison.
+
+#selenium_local_url_page_device_config.yaml
+Used for running selenium locally and testing locally attached devices
+(in this case an iPad 2 attached to a Mac Pro machine) with url-based comparison.
+
 
 
 SELENIUM INTEGRATION
@@ -137,12 +147,11 @@ tested only in chrome and safari. It is known not to work in firefox due to the 
 way Firefox handles screenshots, and a workaround at the cropping stage will 
 almost certainly be necessary in order to rectify this.
 
+INSTALLATION
+============
 
-## Requirements
-
-To read our detailed instructions for setup and install, as well as example configs, visit [wraith docs](http://bbc-news.github.io/wraith/index.html)
-
-## Installation
+Installing and running Selenium-Wraith is very similar to the original BBC Wraith gem.
+The documentation below is taken from the BBC Wraith gem README file.
 
 Open terminal and run
 
@@ -151,12 +160,6 @@ Open terminal and run
 You can then run the following to create a template snap.js and config file:
 
     wraith setup
-
-Alternatively you can clone the repo.
-
-    git clone https://github.com/BBC-News/wraith
-    cd wraith
-    bundle install
 
 ## Using Wraith
 You can type `wraith` into terminal to bring up the list of commands, but the one to start Wraith is
@@ -213,17 +216,19 @@ If you want to add functionality to this project, pull requests are welcome.
 
 **Please raise any issues with this project as a GitHub issue.**
 
-## Changelog - updated 2014-02-09
-We have released Wraith as a Ruby Gem!!  There is a new CLI to better interact with Wraith and it's commands.
-
 ## License
 
-Wraith is available to everyone under the terms of the Apache 2.0 open source license.
+The original BBC Wraith gem is available to everyone under the terms of the Apache 2.0
+open source license. Selenium-Wraith follows this licensing model.
 Take a look at the LICENSE file in the code.
 
 ## Credits
 
+Original Wraith Gem
+
  * [Dave Blooman](http://twitter.com/dblooman)
  * [John Cleveley](http://twitter.com/jcleveley)
  * [Simon Thulbourn](http://twitter.com/sthulbourn)
+
+ Selenium-Wraith
  * [Andrew Tekle-Cadman, Future Visible Ltd.](http://www.linkedin.com/in/andrewcadman)
