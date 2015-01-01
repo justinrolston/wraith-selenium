@@ -60,7 +60,7 @@ are present in the templates directory. Each file contains extensive comments.
 These are:
 
 #phantomjs_local_url_page_desktop_config.yaml
-Ued for running the pre-existing Wraith
+Used for running the pre-existing Wraith
 functionality using phantomJS.
 
 #selenium_grid_browser_page_desktop_config.yaml
